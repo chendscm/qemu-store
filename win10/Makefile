@@ -18,8 +18,9 @@ run:
 	-accel kvm \
 	-smp 4  \
 	-m 8G \
-	-vga qxl \
+	-vga std \
 	-machine usb=on -device usb-tablet \
+	-nic user,hostfwd=tcp::10022-:22 \
 	/home/user/git/qemu-script/win10/win10.qcow2
 
 .PHONY: create install run
