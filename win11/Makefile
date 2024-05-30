@@ -18,8 +18,11 @@ run:
 	-accel kvm \
 	-smp 4  \
 	-m 8G \
-	-vga qxl \
+	-vga qxl -device qxl \
 	-machine usb=on -device usb-tablet \
+	-audiodev pa,id=snd0 \
+	-device ich9-intel-hda \
+	-device hda-output,audiodev=snd0 \
 	-nic user,hostfwd=tcp::10022-:22 \
 	/home/chend/git/qemu-store/win11/win11.qcow2
 
