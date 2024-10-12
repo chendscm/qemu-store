@@ -15,7 +15,7 @@ install:
 
 run:
 	qemu-system-x86_64 \
-	-cpu host \
+	-cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
 	-accel kvm \
 	-smp 4  \
 	-m 8G \
@@ -27,4 +27,19 @@ run:
 	-nic user,hostfwd=tcp::10022-:22 \
 	/home/chend/git/qemu-store/gpdm2/win11/win11.qcow2
 
-.PHONY: create install run
+test:
+	qemu-system-x86_64 \
+	-cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
+	-accel kvm \
+	-smp 4  \
+	-m 8G \
+	-vga none -device qxl-vga,vgamem_mb=64 \
+	-device VGA,edid=on,xres=2240,yres=1400 \
+	-machine usb=on -device usb-tablet \
+	-audiodev pa,id=snd0 \
+	-device ich9-intel-hda \
+	-device hda-output,audiodev=snd0 \
+	-nic user,hostfwd=tcp::10022-:22 \
+	/home/chend/git/qemu-store/gpdm2/win11/win11.qcow2
+
+.PHONY: create install test
