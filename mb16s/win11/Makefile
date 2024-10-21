@@ -15,6 +15,7 @@ install:
 
 run:
 	qemu-system-x86_64 \
+	-cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
 	-accel kvm \
 	-smp 4  \
 	-m 8G \
