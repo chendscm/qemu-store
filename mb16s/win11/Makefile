@@ -19,7 +19,7 @@ run:
 	-accel kvm \
 	-smp 4  \
 	-m 8G \
-	-vga qxl -device qxl \
+	-vga qxl -device qxl -device qxl \
 	-machine usb=on -device usb-tablet \
 	-audiodev pa,id=snd0 \
 	-net nic -net user \
