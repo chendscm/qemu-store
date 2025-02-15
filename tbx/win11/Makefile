@@ -24,7 +24,7 @@ run:
 	-accel kvm \
 	-smp 4  \
 	-m 8G \
-	-vga qxl -device qxl \
+        -device virtio-vga,xres=2880,yres=1920,max_hostmem=4294967296,edid=on -vga none \
 	-machine usb=on -device usb-tablet \
 	-audiodev pa,id=snd0 \
 	-net nic -net user \
